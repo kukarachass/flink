@@ -1,12 +1,15 @@
-interface IParams {
-    id: string;
+interface IdPageProps {
+    params: Promise<{
+        id: string;
+    }>;
 }
 
-export default function OffersPage( params: IParams ) {
-    const id = params.id;
+export default async function ProductPage({ params }: IdPageProps) {
+    const { id } = await params;
+
     return (
         <div>
-            product page
+            <h1 className="text-2xl font-bold">{id}</h1>
         </div>
-    )
+    );
 }
