@@ -3,6 +3,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import {ReactQueryClientProvider} from "@/app/providers/ReactQueryClientProvider";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
     title: "Flink",
@@ -23,10 +24,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={poppins.variable}>
-        <body>
+        <body className="min-h-screen flex flex-col">
         <ReactQueryClientProvider>
             <Header/>
-            {children}
+            <main className="flex-1 p-8">
+                {children}
+            </main>     
+            <Footer/>
         </ReactQueryClientProvider>
         </body>
         </html>

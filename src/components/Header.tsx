@@ -11,10 +11,10 @@ import ProfileSVG from "@/svg/ProfileSVG";
 export default function Header() {
 
     return (
-        <div className="p-6 flex flex-col gap-4">
+        <div className="p-6 flex flex-col gap-7">
             <div className="flex flex-row items-center gap-9">
-                <div className="text-[var(--primary)] text-4xl font-bold">
-                    Flink
+                <div>
+                    <Image width="130" height="32" src="/logo.svg" alt="Logo"/>
                 </div>
 
                 <div className="flex flex-row items-center gap-2 bg-gray-100 px-3 py-1.5 w-fit rounded-2xl">
