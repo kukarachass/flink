@@ -2,12 +2,13 @@ interface Props{
     name: string,
     placeholder: string,
     required: boolean,
+    type: string,
 }
 
-export default function Input({ name, placeholder, required}: Props ) {
+export default function Input({ name, placeholder, required, type}: Props ) {
     return (
         <input
-            type="email"
+            type={type}
             name={name}
             placeholder={placeholder}
             required={required}
