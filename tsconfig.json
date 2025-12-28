@@ -6,10 +6,12 @@
     "strict": true,
     "esModuleInterop": true,
     "ignoreDeprecations": "6.0",
+
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",

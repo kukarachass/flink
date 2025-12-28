@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import {ReactQueryClientProvider} from "@/app/providers/ReactQueryClientProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster, toast } from 'sonner'
 
 export const metadata: Metadata = {
     title: "Flink",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <ReactQueryClientProvider>
             <Header/>
             <main className="flex-1 p-8">
+                <Toaster position="bottom-center" richColors/>
                 {children}
             </main>     
             <Footer/>

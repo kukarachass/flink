@@ -1,21 +1,20 @@
-"use client";
+import React, { useState } from "react";
 
-import {JSX, useState} from "react";
-
-export default function PasswordInput({ name, required }: {name: string, required: boolean}) {
+const PasswordInput = React.forwardRef<
+    HTMLInputElement,
+    React.InputHTMLAttributes<HTMLInputElement>
+>((props, ref) => {
     const [show, setShow] = useState(false);
 
     return (
         <div className="relative">
             <input
-                name={name}
-                required={required}
+                ref={ref}
+                {...props}
                 type={show ? "text" : "password"}
-                placeholder="Password"
                 className="w-full rounded-lg border border-gray-300 px-4 py-2 pr-11 text-sm
                    focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
             />
-
             <button
                 type="button"
                 onClick={() => setShow(!show)}
@@ -55,4 +54,7 @@ export default function PasswordInput({ name, required }: {name: string, require
             </button>
         </div>
     );
-}
+});
+
+PasswordInput.displayName = "PasswordInput";
+export default PasswordInput;

@@ -34,7 +34,7 @@ export default function Header() {
                 <NavLink href={"/offers"} icon={OfferSVG} offerIcon={true}>
                     Offers
                 </NavLink>
-                <NavLink href={"/profile"} icon={ProfileSVG}>
+                <NavLink href={"/account"} icon={ProfileSVG}>
                     Profile
                 </NavLink>
 
