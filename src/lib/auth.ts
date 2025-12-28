@@ -1,13 +1,16 @@
-import { betterAuth } from 'better-auth'
+import {APIError, betterAuth} from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import prisma from '@/lib/prisma'
 import {sendEmail} from "@/lib/email.ts";
+import {createAuthMiddleware} from "@better-auth/core/api";
+import { passwordSchema} from "@/lib/validators/passwordSchema.ts";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: 'postgresql',
     }),
     emailAndPassword: {
+
         enabled: true,
         async sendResetPassword({ user, url }){
             await sendEmail({
@@ -35,6 +38,25 @@ export const auth = betterAuth({
                 input: false,
             }
         }
+    },
+
+    hooks: {
+        before: createAuthMiddleware(async context => { // выполняется перед любым better auth действием
+            if(context.path === '/sign-up/email' ||
+                context.path === '/reset-password' ||
+                context.path === '/change-password'
+            ){
+                console.log("хук с проверкой запустился")
+                const password = context.body.password || context.body.newPassword
+                const { error } = passwordSchema.safeParse(password)
+                if(error){
+                    console.log("error came from hook check")
+                    throw new APIError("BAD_REQUEST", {
+                        message: "Password not strong enough"
+                    }) // будет попадать в error.message и будет отображаться в ui
+                }
+            }
+        }),
     }
 })
 

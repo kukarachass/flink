@@ -15,6 +15,7 @@ import {signUp} from "@/lib/auth-client";
 import {SignUpFormValues, signUpSchema} from "@/lib/validators/signUpSchema.ts";
 import {useState} from "react";
 import Link from "next/link";
+import {toast} from "sonner";
 
 
 export default function SignUpPage() {
@@ -41,6 +42,7 @@ export default function SignUpPage() {
 
         if (error){
             setError(error.message || "Something went wrong.");
+            toast.error(error.message || "Something went wrong.");
         } else{
             router.push("/");
         }
@@ -107,8 +109,6 @@ export default function SignUpPage() {
 
                         <span className="text-center text-xs text-[var(--text-muted)]">By creating an account, you agree to our Terms and Conditions</span>
                     </div>
-
-                    {error && <p className="text-red-500 text-center">{error}</p>}
 
                     <button
                         type="submit"
