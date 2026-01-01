@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import CategoryDropdown from "@/components/DropDownBtn";
-// import DiscoverLink from "@/components/DiscoverLink";
 import {NavLink} from "@/components/NavLink";
 import DiscoverSVG from "@/svg/DiscoverSVG";
 import OfferSVG from "@/svg/OfferSVG";
@@ -28,13 +27,13 @@ export default function Header() {
 
             <div className="flex flex-row items-center gap-3">
                 <CategoryDropdown/>
-                <NavLink href={"/"} icon={DiscoverSVG}>
+                <NavLink href={"/"} icon={DiscoverSVG} variant={"discover"}>
                     Discover
                 </NavLink>
                 <NavLink href={"/offers"} icon={OfferSVG} offerIcon={true}>
                     Offers
                 </NavLink>
-                <NavLink href={"/profile"} icon={ProfileSVG}>
+                <NavLink href={"/account"} icon={ProfileSVG}>
                     Profile
                 </NavLink>
 

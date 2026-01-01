@@ -8,18 +8,22 @@
     --muted-bg: #F8F8F8;
     --primary-light: #FDE9F1;
     --border: #aebbf1;
+    --attention-color: #fdf5e5;
 }
 
 .header-nav-item {
     @apply flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--muted-bg)] text-[var(--text)]}
 
-body {
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background: var(--background);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-geom), system-ui, sans-serif;
+
 }
+
+
 
 
 

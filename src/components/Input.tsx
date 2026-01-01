@@ -1,18 +1,18 @@
-interface Props{
-    name: string,
-    placeholder: string,
-    required: boolean,
-}
+import React from "react";
 
-export default function Input({ name, placeholder, required}: Props ) {
+const Input = React.forwardRef<
+    HTMLInputElement,
+    React.InputHTMLAttributes<HTMLInputElement>
+>((props, ref) => {
     return (
         <input
-            type="email"
-            name={name}
-            placeholder={placeholder}
-            required={required}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 pr-11 text-sm
-                   focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
+            ref={ref}
+            {...props}
+            className={`peer w-full rounded-lg border border-gray-300 px-4 py-2 pr-11 text-base
+                       focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all ${props.className}`}
         />
-    )
-}
+    );
+});
+
+Input.displayName = "Input";
+export default Input;
