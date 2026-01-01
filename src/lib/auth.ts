@@ -3,12 +3,19 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import prisma from '@/lib/prisma'
 import {sendEmail} from "@/lib/email.ts";
 import {createAuthMiddleware} from "@better-auth/core/api";
-import { passwordSchema} from "@/lib/validators/passwordSchema.ts";
+import {passwordSchema, passwordValidation} from "@/lib/validators/passwordSchema.ts";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: 'postgresql',
     }),
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+        }
+    },
+
     emailAndPassword: {
 
         enabled: true,
@@ -48,7 +55,7 @@ export const auth = betterAuth({
             ){
                 console.log("хук с проверкой запустился")
                 const password = context.body.password || context.body.newPassword
-                const { error } = passwordSchema.safeParse(password)
+                const { error } = passwordValidation.safeParse(password); // Теперь сработает для строки
                 if(error){
                     console.log("error came from hook check")
                     throw new APIError("BAD_REQUEST", {

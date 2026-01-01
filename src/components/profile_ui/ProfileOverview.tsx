@@ -55,9 +55,6 @@ export default function ProfileOverview() {
                         </div>
                     </div>
 
-                    {/*<Link className="bg-[#EC9900] font-medium text-white p-1 rounded-lg text-[13px]" href={getProfileUrl(PROFILE_VIEWS.VERIFICATION_EMAIL)}>*/}
-                    {/*    Resend Email*/}
-                    {/*</Link>*/}
                     <ResendEmailButton email={email} style={"secondary"}/>
                 </div>
             )}
@@ -106,7 +103,7 @@ export default function ProfileOverview() {
 
             <div className="flex flex-col gap-5">
                 <h1 className="font-bold text-[var(--text)] text-xl">Legal & Privacy</h1>
-                <Link href="/" className="group flex flex-row justify-between border-b border-gray-200 pb-2   ">
+                <Link href="/privacy" className="group flex flex-row justify-between border-b border-gray-200 pb-2   ">
                     <div className="flex flex-row gap-3 items-center">
                         <PrivacySVG className="group-hover:stroke-[var(--primary)]"/>
                         <span className="text-[var(--text)] group-hover:text-[var(--primary)]">Privacy Policy</span>

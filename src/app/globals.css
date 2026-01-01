@@ -19,8 +19,11 @@ body{
     padding: 0;
     box-sizing: border-box;
     background: var(--background);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-geom), system-ui, sans-serif;
+
 }
+
+
 
 
 

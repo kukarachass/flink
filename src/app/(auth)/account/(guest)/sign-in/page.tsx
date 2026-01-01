@@ -12,10 +12,10 @@ import {signIn} from "@/lib/auth-client.ts";
 import {SignInFormValues, signInSchema} from "@/lib/validators/signInSchema.ts";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {toast} from "sonner";
 
 export default function SignInPage() {
     const router = useRouter();
-    const [error, setError] = useState<string | null>(null);
 
     const {
         register,
@@ -27,14 +27,13 @@ export default function SignInPage() {
     });
 
     async function onSubmit(data: SignInFormValues) {
-        setError(null);
         const res = await signIn.email(data);
 
         if(res.error){
-            setError(res.error.message || "Something went wrong.");
+            toast.error(res.error.message || "Something went wrong.");
         } else{
             router.push("/");
-            //toast
+            toast.success("Sign In successfully");
         }
     }
 
@@ -69,7 +68,6 @@ export default function SignInPage() {
                                 password?</Link>
                         </div>
                     </div>
-                    {error && <p className="text-red-500 text-center">{error}</p>}
                     <div>
                         <button
                             className="bg-[var(--primary)] text-white p-4 rounded-2xl text-center w-full font-bold cursor-pointer"
